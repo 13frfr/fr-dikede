@@ -1,0 +1,37 @@
+{
+  "id": "3557750",
+  "name": "人资",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "10593801",
+      "name": "睁眼,打开,眼睛_jurassic",
+      "font_class": "jurassic_openeyes",
+      "unicode": "e69e",
+      "unicode_decimal": 59038
+    },
+    {
+      "icon_id": "25620277",
+      "name": "睁眼",
+      "font_class": "zhengyan",
+      "unicode": "e72c",
+      "unicode_decimal": 59180
+    },
+    {
+      "icon_id": "7817235",
+      "name": "隐藏密码",
+      "font_class": "yincangmima",
+      "unicode": "e615",
+      "unicode_decimal": 58901
+    },
+    {
+      "icon_id": "11518456",
+      "name": "验证码",
+      "font_class": "yanzhengma",
+      "unicode": "e634",
+      "unicode_decimal": 58932
+    }
+  ]
+}
