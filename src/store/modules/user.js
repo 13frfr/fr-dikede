@@ -1,30 +1,31 @@
-import { login } from "@/api/user"
-import {getToken, setToken} from '@/utils/auth'
-import  router from '@/router'
-import {Message} from 'element-ui'
-
+import { login, UserInfo } from '@/api/login'
 export default {
   namespaced: true,
   state: {
-    token:getToken() || []
+    data: '',
+    userInfo: ''
   },
   mutations: {
-    setToken(state,payload){
-      state.token = payload
-      setToken(payload)
-      
+    setToken(state, data) {
+      state.data = data
+    },
+    setUserInfo(state, payload) {
+      state.userInfo = payload
     }
   },
   actions: {
-    async getToken(context,payload){
-      const res = await login(payload)
-      console.log(res);
-      if(res.data.success){
-        router.push('/dashboard')
-      } else{
-        Message.error(res.data.msg)
-      }
-      context.commit('setToken',res.data.token)
+    async getToken(context, payload) {
+      // console.log(context)
+      const { data } = await login(payload)
+      context.commit('setToken', { ...data })
+      context.dispatch('getUserInfo', data.userId)
+    },
+    async getUserInfo(context, payload) {
+      try {
+        const { data } = await UserInfo(payload)
+        context.commit('setUserInfo', data)
+      } catch (err) { console.log(err) }
     }
-  }
+  },
+  modules: {}
 }
