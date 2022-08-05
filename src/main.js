@@ -5,27 +5,28 @@ import 'normalize.css/normalize.css' // A modern alternative to CSS resets
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import locale from 'element-ui/lib/locale/lang/en' // lang i18n
-import '@/assets/iconfont/iconfont.css'
+
 import '@/styles/index.scss' // global css
 
 import App from './App'
 import store from './store'
 import router from './router'
-import '@/assets/iconfont/iconfont.css'
+
 import '@/icons' // icon
 import '@/permission' // permission control
+import '@/assets/fonts/iconfont.css'
 
-/**
- * If you don't want to use mock-server
- * you want to use MockJs for mock api
- * you can execute: mockXHR()
- *
- * Currently MockJs will be used in the production environment,
- * please remove it before going online ! ! !
- */
+// 引入抽离的自定义指令
+import * as directives from '@/directives'
+
 if (process.env.NODE_ENV === 'production') {
   const { mockXHR } = require('../mock')
   mockXHR()
+}
+
+// 遍历引入的自定义指令（自定义指令可能有多个）
+for(let key in directives){
+  Vue.directive(key,directives[key])
 }
 
 // set ElementUI lang to EN
